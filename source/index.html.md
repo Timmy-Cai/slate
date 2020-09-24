@@ -17,7 +17,7 @@ API路径：GET `api/v1/getAccount`
 
 | 字段名称 | 是否必须 | 描述 |
 | --- | ------|-------------|
-| name | 是 | 账户名称 |
+| name | Y | 账户名称 |
 
 
 > 返回:
@@ -100,7 +100,7 @@ API路径：GET `api/v1/getNonce`
 
 | 字段名称 | 是否必须 | 描述 |
 | --- | ------|-------------|
-| name | 是 | 账户名称 |
+| name | Y | 账户名称 |
 
 
 > 返回:
@@ -131,8 +131,8 @@ API路径：GET `api/v1/getAccountBalance`
 
 | 字段名称 | 是否必须 | 描述 |
 | --- | ------|-------------|
-| name | 是 | 账户名称 |
-| assetId | 是 | 资产ID |
+| name | Y | 账户名称 |
+| assetId | Y | 资产ID |
 
 
 > 返回:
@@ -164,7 +164,7 @@ API路径：GET `api/v1/accountExist`
 
 | 字段名称 | 是否必须 | 描述 |
 | --- | ------|-------------|
-| name | 是 | 账户名称 |
+| name | Y | 账户名称 |
 
 
 > 返回:
@@ -201,13 +201,13 @@ API路径：POST `/api/v1/triggerCreatAccount`
 ### 请求参数
 | 字段名称 | 是否必须 | 描述 |
 | --- | ------|-------------|
-| accountName | 是 | 账户名 | 
-| assetId | 是 | 资产ID | 
-| amount | 是 | 创建账户时转账数量 | 
-| newAccountName | 是 | 新账户名称 | 
-| publicKey | 是 | 公钥地址 | 
-| description | 否 | 账户描述 | 
-| remark | 否 | 账户备注 | 
+| accountName | Y | 账户名 | 
+| assetId | Y | 资产ID | 
+| amount | Y | 创建账户时转账数量 | 
+| newAccountName | Y | 新账户名称 | 
+| publicKey | Y | 公钥地址 | 
+| description | N | 账户描述 | 
+| remark | N | 账户备注 | 
 
 
 > 返回:
@@ -269,12 +269,12 @@ API路径：POST `/api/v1/accountTransfers`
 ### 请求参数
 | 字段名称 | 是否必须 | 描述 |
 | --- | ------|-------------|
-| accountName | 是 | 账户名 | 
-| onlyConfirmed | 否 | 是否已确认，默认false | 
-| limit | 否  |  查询数量，1~40,默认20 | 
-| fingerPrint | 否  |  查询下一批数据的指纹，首次传空 | 
-| orderBy | 是 | height#asc,height#desc | 
-| searchInternal | 否 | 查询内部交易 | 
+| accountName | Y | 账户名 | 
+| onlyConfirmed | N | 是否已确认，默认false | 
+| limit | N |  查询数量，1~40,默认20 | 
+| fingerPrint | N |  查询下一批数据的指纹，首次传空 | 
+| orderBy | Y | height#asc,height#desc | 
+| searchInternal | N | 查询内部交易 | 
 
 
 
