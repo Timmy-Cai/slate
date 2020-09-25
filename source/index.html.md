@@ -1,37 +1,35 @@
-# 服务器API地址
+# API使用说明
 前缀：
-```http://xxx```
+`http://xxx`
 
 
-完整的API地址为：```前缀```+```具体接口路径```
+完整的API地址为：`前缀`+`具体接口路径`
 
 比如，获取账户信息接口为：
-```http://xxx/``` + ```/api/v1/getAccount?name=prefsabi@homes```
+`http://xxx/` + `/api/v1/getAccount?name=prefsabi@homes`
 
 ->
 
-```http://xxx/api/v1/getAccount?name=prefsabi@homes```
+`http://xxx/api/v1/getAccount?name=prefsabi@homes`
 
-## 调用接口说明
+
 - 请注意我们仅支持https访问，不支持http访问。
 - API请求：仅支持GET或POST请求。
 - 如果为GET请求，所有请求参数以queryString方式传入，例如：/api/v1/getAccount?name=prefsabi@homes
 - 如果为POST请求，所有请求参数以JSON形式作为Request Body传入。请求类型必须为Content-Type: application/json。
 
- 所有的接口的返回形式都是统一为：
  
- 正常返回: 
-    
-```
+ ``` bash
+所有的接口的返回形式都是统一为：
+
+正常返回: 
 {
   "errorCode": 0,
   "errorMsg": "",
   "data": 某种类型的数据，比如字符串，数字，字典等等
 }
-```
- 异常返回: 
-  
-```
+
+异常返回: 
 {
   "errorCode": 具体的错误码,
   "errorMsg": "具体的错误信息字符串"
@@ -1708,6 +1706,8 @@ API路径：POST `/api/v1/contractPayloadDecode`
 
 ## 返回参数
 
+### action参数
+
 名称 | 备注
 ---|---
 gasAssetId | gas资产ID
@@ -1725,7 +1725,7 @@ remark | 备注
 nonce | nonce
 
 
-actionType 参数
+### actionType 参数
 名称 | 备注
 ---|---
 0 | 调用合约
