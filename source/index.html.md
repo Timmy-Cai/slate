@@ -1,3 +1,46 @@
+# 服务器API地址
+前缀：
+```http://xxx```
+
+
+完整的API地址为：```前缀```+```具体接口路径```
+
+比如，获取账户信息接口为：
+```http://xxx/``` + ```/api/v1/getAccount?name=prefsabi@homes```
+
+->
+
+```http://xxx/api/v1/getAccount?name=prefsabi@homes```
+
+## 调用接口说明
+- 请注意我们仅支持https访问，不支持http访问。
+- API请求：仅支持GET或POST请求。
+- 如果为GET请求，所有请求参数以queryString方式传入，例如：/api/v1/getAccount?name=prefsabi@homes
+- 如果为POST请求，所有请求参数以JSON形式作为Request Body传入。请求类型必须为Content-Type: application/json。
+
+ 所有的接口的返回形式都是统一为：
+ 
+ 正常返回: 
+    
+```
+{
+  "errorCode": 0,
+  "errorMsg": "",
+  "data": 某种类型的数据，比如字符串，数字，字典等等
+}
+```
+ 异常返回: 
+  
+```
+{
+  "errorCode": 具体的错误码,
+  "errorMsg": "具体的错误信息字符串"
+  "data": null
+}
+```
+
+
+
 # 账户
 
 ## 获取账户信息
@@ -192,8 +235,9 @@ API路径：POST `/api/v1/triggerCreatAccount`
     "assetId": 0,
     "amount": 100000000000,
     "newAccountName": "test000003@homes",
+    "founder": "test000003@homes",
     "publicKey": "0x047db227d7094ce215c3a0f57e1bcc732551fe351f94249471934567e0f5dc1bf795962b8cccb87a2eb56b29fbe37d614e2f4c3c45b789ae4f1f51f4cb21972ffd",
-    "description": "111",
+    "description": "",
     "remark": "hello"
 }
 ```
@@ -205,6 +249,7 @@ API路径：POST `/api/v1/triggerCreatAccount`
 | assetId | Y | 资产ID | 
 | amount | Y | 创建账户时转账数量 | 
 | newAccountName | Y | 新账户名称 | 
+| founder | Y | founder | 
 | publicKey | Y | 公钥地址 | 
 | description | N | 账户描述 | 
 | remark | N | 账户备注 | 
@@ -217,11 +262,19 @@ API路径：POST `/api/v1/triggerCreatAccount`
     "data": {
         "parameter": {
             "requestParameter": {
-                "accountName": "prefsabi@homes",
+                "accountName": "@homes",
                 "assetId": 0,
                 "remark": "hello",
-                "amount": 1,
-                "toAccountName": "prefsabi@homes"
+                "amount": 100000000000,
+                "newAccountName": "test000003@homes",
+                "founder": "test000003@homes",
+                "publicKey": "0x047db227d7094ce215c3a0f57e1bcc732551fe351f94249471934567e0f5dc1bf795962b8cccb87a2eb56b29fbe37d614e2f4c3c45b789ae4f1f51f4cb21972ffd",
+                "description": ""
+            },
+            "payloadParameter": {
+                "accountName": "test000003@homes",
+                "founder": "test000003@homes",
+                "publicKey": "0x047db227d7094ce215c3a0f57e1bcc732551fe351f94249471934567e0f5dc1bf795962b8cccb87a2eb56b29fbe37d614e2f4c3c45b789ae4f1f51f4cb21972ffd"
             }
         },
         "result": {
@@ -229,15 +282,15 @@ API路径：POST `/api/v1/triggerCreatAccount`
             "gasAssetId": 0,
             "gasPrice": 1000,
             "action": {
-                "accountName": "prefsabi@homes",
-                "actionType": 515,
+                "accountName": "@homes",
+                "actionType": 256,
                 "assetId": 0,
-                "toAccountName": "prefsabi@homes",
-                "gasLimit": 100000,
-                "amount": 1,
-                "payload": "",
+                "toAccountName": "account@gon",
+                "gasLimit": 500000,
+                "amount": 100000000000,
+                "payload": "0xf866907465737430303030303340686f6d6573907465737430303030303340686f6d6573b841047db227d7094ce215c3a0f57e1bcc732551fe351f94249471934567e0f5dc1bf795962b8cccb87a2eb56b29fbe37d614e2f4c3c45b789ae4f1f51f4cb21972ffd80",
                 "remark": "hello",
-                "nonce": 5
+                "nonce": 87
             }
         }
     },
@@ -346,11 +399,20 @@ API路径：POST `/api/v1/triggerUpdateAccountAuthor`
             "owner": "0x04474da0e3024d2089888dd60b7cdd79784725c4074f207b09dd7caa63a5b6ceb226b7141f4720c921003b54be581c84a05072c2d4752a1f5fae698684753424c5",
             "weight": 3,
             "authorActionType":1
-        },
-         {
-            "owner": "4@homes",
-            "weight": 2,
-            "authorActionType":0
+        }
+    ],
+    "accountAuthors": [
+        {
+            "owner": "3@homes",
+            "weight": 3,
+            "authorActionType":1
+        }
+    ],
+    "addressAuthors": [
+        {
+            "owner": "0x04474da0e3024d2089888dd60b",
+            "weight": 3,
+            "authorActionType":1
         }
     ],
     "activeAuthor": 3,
@@ -361,9 +423,17 @@ API路径：POST `/api/v1/triggerUpdateAccountAuthor`
 ### 请求参数
 | 字段名称 | 是否必须 | 描述 |
 | --- | ------|-------------|
-
-
-
+| accountName | Y | 账户名 |
+| assetId | Y | 资产ID |
+| remark | Y | 备注 |
+| activeAuthor | Y | activeAuthor |
+| ownerAuthor | Y | ownerAuthor |
+| publicKeyAuthors | N | 公钥列表 |
+| accountAuthors | N | 账户列表 |
+| addressAuthors | N | 地址列表 |
+| owner | Y | owner |
+| weight | Y | weight |
+| authorActionType | Y | authorAction类型 0-添加 1-更新 2-删除 |
 
 > 返回:
 
@@ -379,11 +449,20 @@ API路径：POST `/api/v1/triggerUpdateAccountAuthor`
                         "authorActionType": 1,
                         "owner": "0x04474da0e3024d2089888dd60b7cdd79784725c4074f207b09dd7caa63a5b6ceb226b7141f4720c921003b54be581c84a05072c2d4752a1f5fae698684753424c5",
                         "weight": 3
-                    },
+                    }
+                ],
+                "accountAuthors": [
                     {
-                        "authorActionType": 0,
-                        "owner": "4@homes",
-                        "weight": 2
+                        "authorActionType": 1,
+                        "owner": "3@homes",
+                        "weight": 3
+                    }
+                ],
+                "addressAuthors": [
+                    {
+                        "authorActionType": 1,
+                        "owner": "0x04474da0e3024d2089888dd60b",
+                        "weight": 3
                     }
                 ],
                 "activeAuthor": 3,
@@ -401,10 +480,17 @@ API路径：POST `/api/v1/triggerUpdateAccountAuthor`
                         }
                     },
                     {
-                        "actionType": 0,
+                        "actionType": 1,
                         "author": {
-                            "owner": "0x0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000004",
-                            "weight": 2
+                            "owner": "3@homes",
+                            "weight": 3
+                        }
+                    },
+                    {
+                        "actionType": 1,
+                        "author": {
+                            "owner": "0x0000000000000004474DA0E3024d2089888Dd60B",
+                            "weight": 3
                         }
                     }
                 ]
@@ -421,7 +507,7 @@ API路径：POST `/api/v1/triggerUpdateAccountAuthor`
                 "toAccountName": "account@gon",
                 "gasLimit": 100000,
                 "amount": 0,
-                "payload": "0xf8980304f894f84801f84501b84104474da0e3024d2089888dd60b7cdd79784725c4074f207b09dd7caa63a5b6ceb226b7141f4720c921003b54be581c84a05072c2d4752a1f5fae698684753424c503f84880f84501b841000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000402",
+                "payload": "0xf8750304f871f84801f84501b84104474da0e3024d2089888dd60b7cdd79784725c4074f207b09dd7caa63a5b6ceb226b7141f4720c921003b54be581c84a05072c2d4752a1f5fae698684753424c503cc01ca80873340686f6d657303d901d702940000000000000004474da0e3024d2089888dd60b03",
                 "remark": "hello",
                 "nonce": 4
             }
@@ -520,13 +606,15 @@ API路径：POST `/api/v1/triggerIssueAsset`
 
 {
     "accountName": "prefsabi@homes",
+    "founder": "prefsabi@homes",
+    "owner": "prefsabi@homes",
     "remark": "hello",
-    "assetName": "timcoin",
+    "assetName": "timmyhahahaha",
     "symbol": "th",
     "assetAmount": 1000,
     "decimals": 1,
     "upperLimit": 2000,
-    "contract": "tim",
+    "contract": "hello world",
     "description": "hello"
 }
 ```
@@ -535,6 +623,8 @@ API路径：POST `/api/v1/triggerIssueAsset`
 | 字段名称 | 是否必须 | 描述 |
 | --- | ------|-------------|
 | accountName | Y | 账户名称 |
+| founder | Y | founder |
+| owner | Y | owner |
 | remark | N | 备注 |
 | assetName | Y | 资产全称 |
 | symbol | Y | 资产简称 |
@@ -554,6 +644,8 @@ API路径：POST `/api/v1/triggerIssueAsset`
         "parameter": {
             "requestParameter": {
                 "accountName": "prefsabi@homes",
+                "founder": "prefsabi@homes",
+                "owner": "prefsabi@homes",
                 "remark": "hello",
                 "assetName": "timmyhahahaha",
                 "symbol": "th",
@@ -1553,8 +1645,10 @@ API路径：POST `/api/v1/sign`
 | 字段名称 | 是否必须 | 描述 |
 | --- | ------|-------------|
 | chainId | Y | 链ID |
-| gasAssetId | Y | 链ID |
-| chainId | Y | 链ID |
+| gasAssetId | Y | gas资产ID |
+| gasPrice | Y | gas价格 |
+| action | Y | 要签名的action内容 |
+| privateKey | Y | 私钥 |
 
 > 返回:
 
@@ -1610,3 +1704,37 @@ API路径：POST `/api/v1/contractPayloadDecode`
 
 ```
 
+# 参数解释
+
+## 返回参数
+
+名称 | 备注
+---|---
+gasAssetId | gas资产ID
+gasPrice | gasPrice
+accountName | 账户名
+actionType | action类型值
+assetId | 资产ID
+toAccountName | to账户
+gasLimit | 账户名
+accountName | gasLimit
+amount | 资金数量
+payload | 账户名
+accountName | payload
+remark | 备注
+nonce | nonce
+
+
+actionType 参数
+名称 | 备注
+---|---
+0 | 调用合约
+1 | 创建合约
+256 | 创建账户
+257 | 更新账户
+259 | 更新账户权重
+512 | 增发资产
+513 | 发行资产 
+514 | 销毁资产
+515 | 转账
+516 | 更新资产协议
