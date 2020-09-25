@@ -296,7 +296,7 @@
       <img src="images/logo-1e815a84.png" class="logo" alt="" />
       <ul id="toc" class="toc-list-h1">
           <li>
-            <a href="#api" class="toc-h1 toc-link" data-title="服务器API地址">服务器API地址</a>
+            <a href="#api" class="toc-h1 toc-link" data-title="API使用说明">API使用说明</a>
           </li>
           <li>
             <a href="#c3d92b20c8" class="toc-h1 toc-link" data-title="账户">账户</a>
@@ -414,7 +414,7 @@
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
-        <h1 id='api'>服务器API地址</h1>
+        <h1 id='api'>API使用说明</h1>
 <p>前缀：
 <code>http://xxx</code></p>
 
@@ -424,30 +424,30 @@
 <code>http://xxx/</code> + <code>/api/v1/getAccount?name=prefsabi@homes</code></p>
 
 <p>-&gt;</p>
-<div class="highlight"><pre class="highlight plaintext"><code>
-## 调用接口说明
-- 请注意我们仅支持https访问，不支持http访问。
-- API请求：仅支持GET或POST请求。
-- 如果为GET请求，所有请求参数以queryString方式传入，例如：/api/v1/getAccount?name=prefsabi@homes
-- 如果为POST请求，所有请求参数以JSON形式作为Request Body传入。请求类型必须为Content-Type: application/json。
 
- 所有的接口的返回形式都是统一为：
+<p><code>http://xxx/api/v1/getAccount?name=prefsabi@homes</code></p>
 
- 正常返回: 
+<ul>
+<li>请注意我们仅支持https访问，不支持http访问。</li>
+<li>API请求：仅支持GET或POST请求。</li>
+<li>如果为GET请求，所有请求参数以queryString方式传入，例如：/api/v1/getAccount?name=prefsabi@homes</li>
+<li>如果为POST请求，所有请求参数以JSON形式作为Request Body传入。请求类型必须为Content-Type: application/json。</li>
+</ul>
+<div class="highlight"><pre class="highlight shell"><code>所有的接口的返回形式都是统一为：
 
-</code></pre></div>
-<p>{
-  &quot;errorCode&quot;: 0,
-  &quot;errorMsg&quot;: &quot;&quot;,
-  &quot;data&quot;: 某种类型的数据，比如字符串，数字，字典等等
-}
-```
- 异常返回: </p>
-<div class="highlight"><pre class="highlight plaintext"><code>{
-  "errorCode": 具体的错误码,
-  "errorMsg": "具体的错误信息字符串"
-  "data": null
-}
+正常返回: 
+<span class="o">{</span>
+  <span class="s2">"errorCode"</span>: 0,
+  <span class="s2">"errorMsg"</span>: <span class="s2">""</span>,
+  <span class="s2">"data"</span>: 某种类型的数据，比如字符串，数字，字典等等
+<span class="o">}</span>
+
+异常返回: 
+<span class="o">{</span>
+  <span class="s2">"errorCode"</span>: 具体的错误码,
+  <span class="s2">"errorMsg"</span>: <span class="s2">"具体的错误信息字符串"</span>
+  <span class="s2">"data"</span>: null
+<span class="o">}</span>
 </code></pre></div><h1 id='c3d92b20c8'>账户</h1><h2 id='0dd8ea95e3'>获取账户信息</h2><h3 id='http-request'>HTTP Request</h3>
 <p>API路径：GET <code>api/v1/getAccount</code></p>
 
@@ -2377,7 +2377,7 @@
     </span><span class="nl">"errorMsg"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre></div><h1 id='326d770259'>参数解释</h1><h2 id='70bdef7e25'>返回参数</h2>
+</span></code></pre></div><h1 id='326d770259'>参数解释</h1><h2 id='70bdef7e25'>返回参数</h2><h3 id='action'>action参数</h3>
 <table><thead>
 <tr>
 <th>名称</th>
@@ -2437,20 +2437,54 @@
 <td>nonce</td>
 </tr>
 </tbody></table>
-
-<p>actionType 参数
-名称 | 备注
----|---
-0 | 调用合约
-1 | 创建合约
-256 | 创建账户
-257 | 更新账户
-259 | 更新账户权重
-512 | 增发资产
-513 | 发行资产 
-514 | 销毁资产
-515 | 转账
-516 | 更新资产协议</p>
+<h3 id='actiontype'>actionType 参数</h3>
+<table><thead>
+<tr>
+<th>名称</th>
+<th>备注</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>0</td>
+<td>调用合约</td>
+</tr>
+<tr>
+<td>1</td>
+<td>创建合约</td>
+</tr>
+<tr>
+<td>256</td>
+<td>创建账户</td>
+</tr>
+<tr>
+<td>257</td>
+<td>更新账户</td>
+</tr>
+<tr>
+<td>259</td>
+<td>更新账户权重</td>
+</tr>
+<tr>
+<td>512</td>
+<td>增发资产</td>
+</tr>
+<tr>
+<td>513</td>
+<td>发行资产</td>
+</tr>
+<tr>
+<td>514</td>
+<td>销毁资产</td>
+</tr>
+<tr>
+<td>515</td>
+<td>转账</td>
+</tr>
+<tr>
+<td>516</td>
+<td>更新资产协议</td>
+</tr>
+</tbody></table>
 
       </div>
       <div class="dark-box">
