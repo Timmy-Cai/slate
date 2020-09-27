@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>API Documentation</title>
+    <title>GRID API Reference</title>
 
     <style media="screen">
       .highlight table td { padding: 5px; }
@@ -281,8 +281,11 @@
     </style>
     <link href="stylesheets/screen-c9d8fa83.css" rel="stylesheet" media="screen" />
     <link href="stylesheets/print-953e3353.css" rel="stylesheet" media="print" />
-      <script src="javascripts/all_nosearch-ea811c3e.js"></script>
+      <script src="javascripts/all-e9bde216.js"></script>
 
+    <script>
+      $(function() { setupCodeCopy(); });
+    </script>
   </head>
 
   <body class="index" data-languages="[]">
@@ -294,6 +297,10 @@
     </a>
     <div class="toc-wrapper">
       <img src="images/logo-1e815a84.png" class="logo" alt="" />
+        <div class="search">
+          <input type="text" class="search" id="input-search" placeholder="Search">
+        </div>
+        <ul class="search-results"></ul>
       <ul id="toc" class="toc-list-h1">
           <li>
             <a href="#api" class="toc-h1 toc-link" data-title="API使用说明">API使用说明</a>
@@ -449,7 +456,7 @@
   <span class="s2">"data"</span>: null
 <span class="o">}</span>
 </code></pre></div><h1 id='c3d92b20c8'>账户</h1><h2 id='0dd8ea95e3'>获取账户信息</h2><h3 id='http-request'>HTTP Request</h3>
-<p>API路径：GET <code>api/v1/getAccount</code></p>
+<p>API路径：GET <code>/api/v1/getAccount</code></p>
 
 <blockquote>
 <p>示例:</p>
@@ -533,7 +540,7 @@
     </span><span class="nl">"errorMsg"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h2 id='nonce'>获取账户的Nonce</h2><h3 id='http-request-2'>HTTP Request</h3>
-<p>API路径：GET <code>api/v1/getNonce</code></p>
+<p>API路径：GET <code>/api/v1/getNonce</code></p>
 
 <blockquote>
 <p>示例:</p>
@@ -564,7 +571,7 @@
     </span><span class="nl">"errorMsg"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h2 id='5f06d36d59'>获取账户余额</h2><h3 id='http-request-3'>HTTP Request</h3>
-<p>API路径：GET <code>api/v1/getAccountBalance</code></p>
+<p>API路径：GET <code>/api/v1/getAccountBalance</code></p>
 
 <blockquote>
 <p>示例:</p>
@@ -600,7 +607,7 @@
     </span><span class="nl">"errorMsg"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h2 id='e7438ef2e4'>账户是否存在</h2><h3 id='http-request-4'>HTTP Request</h3>
-<p>API路径：GET <code>api/v1/accountExist</code></p>
+<p>API路径：GET <code>/api/v1/accountExist</code></p>
 
 <blockquote>
 <p>示例:</p>
