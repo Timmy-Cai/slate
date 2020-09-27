@@ -1,3 +1,11 @@
+---
+title: GRID API Reference
+
+search: true
+
+code_clipboard: true
+---
+
 # API使用说明
 前缀：
 `http://xxx`
@@ -45,7 +53,7 @@
 
 ### HTTP Request
 
-API路径：GET `api/v1/getAccount`
+API路径：GET `/api/v1/getAccount`
 
 > 示例:
 
@@ -128,7 +136,7 @@ API路径：GET `api/v1/getAccount`
 
 ### HTTP Request
 
-API路径：GET `api/v1/getNonce`
+API路径：GET `/api/v1/getNonce`
 
 > 示例:
 
@@ -159,7 +167,7 @@ API路径：GET `api/v1/getNonce`
 
 ### HTTP Request
 
-API路径：GET `api/v1/getAccountBalance`
+API路径：GET `/api/v1/getAccountBalance`
 
 > 示例:
 
@@ -192,7 +200,7 @@ API路径：GET `api/v1/getAccountBalance`
 
 ### HTTP Request
 
-API路径：GET `api/v1/accountExist`
+API路径：GET `/api/v1/accountExist`
 
 > 示例:
 
